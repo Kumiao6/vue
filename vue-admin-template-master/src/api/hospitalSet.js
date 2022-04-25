@@ -38,18 +38,29 @@ export default {
   },
 
 
-  //添加医院设置
-  addHospSet(hospitalSet) {
-    return request ({
-      url: `/admin/hosp/hospitalSet/addHospitalSet`,
-      method: 'post',
-      data: hospitalSet
+  //添加医院设置信息
+  addHospSet(hospitalSet){
+    return request({
+        url: `admin/hosp/hospitalSet/saveHospitalSet`,
+        
+        method: 'post',
+        data:hospitalSet
     })
   },
 
+  //修改医院设置信息
+updateHospInfo(hospitalSet){
+  return request({
+      url: `/admin/hosp/hospitalSet/updateHospital`,
+      method: 'post',
+      data:hospitalSet
+  })
+
+
+
 
   
-
+}
     
         
 
