@@ -38,14 +38,7 @@ export default {
   },
   
   
-  //添加医院设置
-  addHospSet(hospitalSet) {
-    return request ({
-      url: `/admin/hosp/hospitalSet/addHospitalSet`,
-      method: 'post',
-      data: hospitalSet
-    })
-  } 
+
         
 
 }
