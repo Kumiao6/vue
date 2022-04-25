@@ -22,7 +22,7 @@
          </el-form-item>
 
          <el-form-item>
-            <el-button type="primary" @click="saveOrUpdate">保存</el-button>
+            <el-button type="primary" @click="addHospSet">保存</el-button>
          </el-form-item>
       </el-form>
 
@@ -32,6 +32,7 @@
 
 <script>
 import hospset from "../../api/hospitalSet";
+
 export default {
   data() {
     return {
@@ -39,7 +40,7 @@ export default {
     };
   },
   methods: {
-    saveOrUpdate() {
+    addHospSet() {
       hospset.addHospSet(this.hospitalSet).then(resp => {
         this.$message({
           type: 'success',
@@ -54,5 +55,7 @@ export default {
   }
 }
 </script>
+
+
 
 
