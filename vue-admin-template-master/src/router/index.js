@@ -62,11 +62,11 @@ export const constantRouterMap = [
       },
       {
         path: 'edit/:id',
-        name: '医院设置编辑',
-        component: () => import('@/views/hospset/add'),
-        meta: { title: '医院设置编辑', icon: 'tree' },
-        hidden:true
-      }
+        name: 'EduTeacherEdit',
+        component: () =>import('@/views/hospset/add'),
+        meta: { title: '编辑', noCache: true },
+        hidden: true
+      },
     ]
   },
 
