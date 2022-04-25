@@ -36,8 +36,8 @@ export default {
       method: 'put'
     })
   },
-
-
+  
+  
   //添加医院设置
   addHospSet(hospitalSet) {
     return request ({
@@ -45,12 +45,7 @@ export default {
       method: 'post',
       data: hospitalSet
     })
-  },
-
-
-  
-
-    
+  } 
         
 
 }
