@@ -1,5 +1,10 @@
 <template>
+
   <div class="app-container">
+     
+   <a href="http://localhost:8202/admin/cmn/dict/exportData" target="_blank">
+       <el-button type="primary" plain @click="exportDict">导出</el-button>
+   </a>
     <el-table
       :data="dictList"
       style="width: 100%"
@@ -64,6 +69,11 @@ name: "list",
       dictList:[],
     }
   },
+   //导出数据字典
+   exportData() {
+      //调用导出接口
+      window.location.href="http://localhost:8202/admin/cmn/dict/exportData"
+   },
 
 }
 </script>
