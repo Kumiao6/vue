@@ -1,10 +1,13 @@
 <template>
+    <div class="app-container">
+        <div class="el-toolbar">
+        <a href="http://localhost:8202/admin/cmn/dict/exportData" target="_blank">
+                <el-button type="text"><i class="fa fa-plus"/> 导出</el-button>
+         </a>
+                <el-button type="text" @click="importData"><i class="fa fa-plus"/> 导入</el-button>
 
-  <div class="app-container">
-     
-   <a href="http://localhost:8202/admin/cmn/dict/exportData" target="_blank">
-       <el-button type="primary" plain @click="exportDict">导出</el-button>
-   </a>
+        </div>
+        
     <el-table
       :data="dictList"
       style="width: 100%"
@@ -35,6 +38,33 @@
         </template>
       </el-table-column>
     </el-table>
+
+
+        <el-dialog title="导入" :visible.sync="dialogImportVisible" width="480px">
+            <el-form label-position="right" label-width="170px">
+
+            <el-form-item label="文件">
+
+            <el-upload
+            :multiple="false"
+            :on-success="onUploadSuccess"
+            :action="'http://localhost:8202/admin/cmn/dict/importData'"
+            class="upload-demo">
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传excel文件,且不超过500kb</div>
+            </el-upload>
+
+            </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogImportVisible = false">
+                取消
+            </el-button>
+            </div>
+        </el-dialog>
+
+
   </div>
 </template>
 
@@ -44,36 +74,44 @@
 import dict from '@/api/cmn/dict'
 
 export default {
-name: "list",
-  created() {
-    this.getListById(1)
-  },
-  methods:{
-    //根据id查询子节点列表
-    getListById(id){
-      dict.getHospSetList(id).then(resp=>{
-          this.dictList = resp.data;
-      })
+    data() {
+        return {
+            dialogImportVisible:false,//设置弹框是否弹出
+            list:[] //数据字典列表数组
+        }
     },
-    //查询下面层级内容
-    //element-ui帮我们封装了，tree为每次查找的id值
-    getChildrens(tree, treeNode, resolve) {
-      dict.getHospSetList(tree.id).then(response => {
-        resolve(response.data)
-      })
+    created() {
+        this.getDictList(1)
     },
-
-  },
-  data() {
-    return {
-      dictList:[],
+    methods: {
+        //导入数据字典
+        importData() {
+            this.dialogImportVisible = true
+        },
+        //上传成功调用
+        onUploadSuccess() {
+            //关闭弹框
+            this.dialogImportVisible = false
+            //刷新页面
+            this.getDictList(1)
+        },
+        //导出数据字典
+        exportData() {
+            //调用导出接口
+            window.location.href="http://localhost:8202/admin/cmn/dict/exportData"
+        },
+        //数据字典列表
+        getDictList(id) {
+            dict.dictList(id)
+                .then(response => {
+                    this.list = response.data
+                })
+        },
+        getChildrens(tree, treeNode, resolve) {
+            dict.dictList(tree.id).then(response => {
+                resolve(response.data)
+            })
+        }
     }
-  },
-   //导出数据字典
-   exportData() {
-      //调用导出接口
-      window.location.href="http://localhost:8202/admin/cmn/dict/exportData"
-   },
-
 }
 </script>
