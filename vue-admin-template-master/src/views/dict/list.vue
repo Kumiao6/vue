@@ -87,6 +87,7 @@ export default {
         },
         //上传成功调用
         onUploadSuccess() {
+            this.$message.info('上传成功')
             //关闭弹框
             this.dialogImportVisible = false
             //刷新页面
