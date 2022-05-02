@@ -96,6 +96,8 @@
 </template>
 <script>
 import hospApi from '@/api/hosp'
+
+
 export default {
     data() {
         return {
