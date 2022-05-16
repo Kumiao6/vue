@@ -1,0 +1,10 @@
+/api
+/asserts
+/components
+/layouts
+/middleware
+/node_modules
+/pages
+/plugins
+/static
+/utils
