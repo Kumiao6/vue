@@ -147,6 +147,7 @@ export default {
             })
         },
 
+
         handleNodeClick(data) {
             // 科室大类直接返回
             if (data.children != null) return
